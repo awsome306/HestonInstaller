@@ -24,6 +24,9 @@ else
     printf "Aliases file already exists. Aliases not written.\n"
 fi
 
+# Download EDUROAM untility for Notre Dame
+#wget https://cloud.securew2.com/public/18738/eduroam/?run
+
 # >> appends
 # > writes to 
 # Sed is used to edit one line in a file that already exists:

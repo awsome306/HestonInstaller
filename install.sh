@@ -107,5 +107,19 @@ elif [[ "$OS" = "Fedora" ]]; then
     rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
     dnf install codium
 fi
+
+
+# Install Brave Browser:
+apt install curl
+curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
+
+apt update
+apt install brave-browser
+
+# Install Neofetch
+apt install neofetch
+
+
 # # Grant execution permissions to the script
 # chmod +x install.sh

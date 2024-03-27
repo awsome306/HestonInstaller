@@ -1,4 +1,4 @@
-{
+{   "window.titleBarStyle": "custom",
     "MATLAB.telemetry": false,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.rulers": [

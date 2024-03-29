@@ -1,0 +1,25 @@
+Host CRCfe01
+    HostName crcfe01.crc.nd.edu
+    User jheston2
+Host CRCfe02
+    HostName crcfe02.crc.nd.edu
+    User jheston2
+Host CRC_daccssfe
+# Notre Dame 3rd Front-end Machine Dell PowerEdge
+    HostName daccssfe.crc.nd.edu
+    User jheston2
+Host CRC_Condor
+    HostName condorfe.crc.nd.edu
+    User jheston2
+Host CRC_Bastion
+# Notre Dame Off-Campus CRC ssh access
+    HostName bastion.nd.nd.edu
+    User jheston2
+Host DockerHost
+    HostName dockerhost.home
+    User joey
+    IdentityFile C:\\Users\\Lagrange\\.ssh\\id_rsa
+Host Leibniz
+    HostName 192.168.1.21
+    User joey
+    IdentityFile C:\\Users\\Lagrange\\.ssh\\id_rsa

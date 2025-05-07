@@ -103,3 +103,6 @@ fc-cache -f -v
 #fc-list|awk '{$1=""}1'|cut -d: -f1|sort|uniq
 
 #TODO: Set vscode font default:
+
+apt install eza
+#TODO Update bashrc to include ls ==> eza alias

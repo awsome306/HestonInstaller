@@ -104,5 +104,6 @@ fc-cache -f -v
 
 #TODO: Set vscode font default:
 
-apt install eza
+# Install eza using Cargo, not apt
+#apt install eza
 #TODO Update bashrc to include ls ==> eza alias

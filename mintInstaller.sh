@@ -34,6 +34,8 @@ code --install-extension MathWorks.language-matlab
 code --install-extension ms-vscode-remote.remote-ssh
 code --install-extension ms-python.autopep8
 code --install-extension ms-python.pylance
+code --install-extension ms-python.isort
+
 
 # TODO: Populate user settings file with desired defaults
 

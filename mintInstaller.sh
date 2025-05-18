@@ -8,7 +8,7 @@ apt update
 apt install git git-doc neofetch curl nano htop 
 apt install python3 
 apt install cmake #If you plan on compiling anything
-
+apt install kdeconnect #To connect your phone sms messages, etc.
 # Add git config:
 git config --global user.name "Joey Heston"
 git config --global user.email 71984403+awsome306@users.noreply.github.com

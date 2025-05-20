@@ -6,11 +6,14 @@ apt update
 
 # Install the basics
 apt install git git-doc neofetch curl nano htop 
-apt install python3 
+apt install python3
 apt install cmake #If you plan on compiling anything
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 
 # TODO: Add batcat alias to bashrc
+
+# TODO: Consider helix editer vs. neovim, etc. 
+# TODO: How to add tldr pages (better than man pages)
 
 # Add git config:
 git config --global user.name "Joey Heston"

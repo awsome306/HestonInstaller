@@ -150,6 +150,10 @@ fc-cache -f -v
 
 #TODO: Set vscode font default:
 
+# KDE Connect for Phone SMS connection:
+# apt install kdeconnect
+# apt install kpeople-vcard
+
 # Install eza using Cargo, not apt
 #apt install eza
 #TODO Update bashrc to include ls ==> eza alias

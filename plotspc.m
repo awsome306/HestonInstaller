@@ -20,15 +20,14 @@ format longeng;
 
 %% User Inputs (CHANGE EACH TIME YOU RUN THIS SCRIPT)
 % Change the following every time you run this script:
-% Filename, plot spectra or not, current PCB Gain settings,
-% calibrate Kulite parameters, etc.
+% Filename, spectra plot on/off, PCB Gain settings, Kulite calibration.
 
 % File to Read:
 % filename = 'Waveform-MM-DD-hh-mm-2025.txt'; % <Stagnation Pressure>,<Nozzle Temp>
 filename = 'Waveform-06-19-15-35-2025.txt';
 
-% Gain of each channel in deciBels. Be aware of the SRS SR650 filter/gain 
-% unit which is in dB!
+% Gain of each channel in decibels. 
+% Be especially aware of the SRS SR650 filter/gain unit which is in dB!
 SRSInputGainDB  = 10; % dB (SRS Input Gain)
 SRSOutputGainDB = 10; % dB (SRS Output Gain)
 ch3GainDB = SRSInputGainDB+SRSOutputGainDB; % dB (PCB Filtered)
@@ -54,13 +53,6 @@ pressure2 = 0;    % [psi] (Test Section)
 voltage1  = 0;    % [V] (from calibration)
 voltage2  = -999; % [V] (from calibration)  
 
-sampleFreq=1.25e6;
-
-nfft_noflow=2^16;
-nfft_flow=2^14;
-
-freqLimitKHz=12; % freq limit in kHz for spectra graphs
-
 %% Input Parameters: (NO CHANGE NEEDED)
 % This section defines the constants used in the script,
 % along with performing relevant unit conversions.
@@ -77,6 +69,14 @@ else
 end
 % 1b. Solve for the Kulite Voltage at true vaccuum (0psi):
 kuliteIntercept=pressNulled-kuliteSlope*voltNulled;
+
+% 2. Sampling Frequency:
+sampleFreq=1.25e6; % [Hz] (1.25 MHz)
+nfft_noflow=2^16;  % Number of points for no-flow spectra
+nfft_flow=2^14;    % Number of points for flow spectra
+
+freqLimitKHz=12; % freq limit in kHz for spectra graphs
+
 
 % Convert gains from dB
 channelGain = 10.^(channelGainDB/20); % linear gain
@@ -147,7 +147,7 @@ xlabel('Time (ms)')
 
 %% Get User Input (Replace with VITA)
 % Grab points using mouse cursor
-fprintf('\nSelect 3 points on graph, then hit enter (while cursor is still on plot) to finish.\n')
+fprintf('\nSelect 3 points on graph, then hit Enter (while cursor is still on plot) to finish.\n')
 [x,y]=ginput();
 
 ttime=x/1000; % [s] (plots are shown in units of msec)
@@ -159,8 +159,12 @@ for i=1:length(x)
   [~,idx(i)]=min(abs(t-ttime(i)));
 end
 
+% flowStartIndex  = 
+% flowEndIndex    = 
+
 %% Extract Flow/No-Flow Regions
-% No-flow data before valve opens; Flow data after valve opens.
+% No-flow data before valve opens; Flow data after valve opens and initial flow 
+% has passed.
 noFlowTimeSeries  = t(1:idx(1));
 flowTimeSeries    = t(idx(2):idx(3));
 noFlowData  = channelPressure(1:idx(1),:);
@@ -213,7 +217,7 @@ box on
 xlabel('Time (ms)')
 sgtitle(filename)
 
-
+%% Frequency Domain Plots: 
 if(isSpectra==1)
   % No Flow number of points
   spectral_resolution_noflow=sampleFreq/nfft_noflow;
@@ -289,93 +293,90 @@ if(isSpectra==1)
   %subplot(4,1,2); plot(f/1000, Ch2Pxxdb_flow); ylabel('PSI^{2}/Hz'); title('dB Kulite AC coupled Flow');%xlim([0 flim]);
   subplot(4,1,3); plot(f/1000, Ch3Pxxdb_flow); ylabel('PSI^{2}/Hz'); xlim([0 flim]);title('dB PCB Filtered Flow');
   subplot(4,1,4); plot(f/1000, Ch4Pxxdb_flow); ylabel('PSI^{2}/Hz'); xlim([0 flim]);xlabel('Freq (kHz)'); title('dB PCB Unfiltered Flow');
-
-
 end
 
 
 if(isSpectra==2)
-% Compute PSD
-orig_num_pnts=length(t);
-fprintf('The total number of available points = %d\n',orig_num_pnts)
-%num_pow2=pow2(floor(log2(orig_num_pnts)));
-%num_pnts=num_pow2
+  % Compute PSD
+  orig_num_pnts=length(t);
+  fprintf('The total number of available points = %d\n',orig_num_pnts)
+  %num_pow2=pow2(floor(log2(orig_num_pnts)));
+  %num_pnts=num_pow2
 
-fprintf('The fft size is %d\n',nfft)
-num_avgs=floor(orig_num_pnts/nfft);
-num_pnts=nfft*num_avgs;
-fprintf('The number of points used is %d\n',num_pnts)
-%fprintf('The number of fft record averages is %d\n',num_avgs)
+  fprintf('The fft size is %d\n',nfft)
+  num_avgs=floor(orig_num_pnts/nfft);
+  num_pnts=nfft*num_avgs;
+  fprintf('The number of points used is %d\n',num_pnts)
+  %fprintf('The number of fft record averages is %d\n',num_avgs)
 
-Ch1=Ch1(1:num_pnts);
-Ch2=Ch2(1:num_pnts);
-Ch3=Ch3(1:num_pnts);
-Ch4=Ch4(1:num_pnts);
+  Ch1=Ch1(1:num_pnts);
+  Ch2=Ch2(1:num_pnts);
+  Ch3=Ch3(1:num_pnts);
+  Ch4=Ch4(1:num_pnts);
 
-%nfft=num_pnts;
-order=5;
-noverlap=0;
-spectral_resolution=Fs/nfft;
-fprintf('The number of fft avgs = %4.1f\n',num_avgs)
-fprintf('the spectral resolution is %4.1f Hz\n',spectral_resolution)
+  %nfft=num_pnts;
+  order=5;
+  noverlap=0;
+  spectral_resolution=Fs/nfft;
+  fprintf('The number of fft avgs = %4.1f\n',num_avgs)
+  fprintf('the spectral resolution is %4.1f Hz\n',spectral_resolution)
 
-%[z,p,k]=butter(order,(480/(Fs/2)),'high');
-%Ch2_filt=filtfilt(z,p,Ch2);
-%Ch3_filt=filtfilt(z,p,Ch3);
-[B,A]=butter(order,(480/(Fs/2)),'high');
-%[B,A]=butter(order,(2000/(Fs/2)),'high');
+  %[z,p,k]=butter(order,(480/(Fs/2)),'high');
+  %Ch2_filt=filtfilt(z,p,Ch2);
+  %Ch3_filt=filtfilt(z,p,Ch3);
+  [B,A]=butter(order,(480/(Fs/2)),'high');
+  %[B,A]=butter(order,(2000/(Fs/2)),'high');
 
-%Ch1_filt=filtfilt(B,A,Ch1);
-Ch2_filt=filtfilt(B,A,Ch2);
-Ch3_filt=filtfilt(B,A,Ch3);
-%Ch4_filt=filtfilt(B,A,Ch4);
+  %Ch1_filt=filtfilt(B,A,Ch1);
+  Ch2_filt=filtfilt(B,A,Ch2);
+  Ch3_filt=filtfilt(B,A,Ch3);
+  %Ch4_filt=filtfilt(B,A,Ch4);
 
-xx=Ch2_filt(1);
-fprintf('First data point after filter = %f\n',xx)
+  xx=Ch2_filt(1);
+  fprintf('First data point after filter = %f\n',xx)
 
-[Ch2Pxx,f]=pwelch(Ch2,hanning(nfft),noverlap,nfft,Fs);
-[Ch3Pxx,f]=pwelch(Ch3,hanning(nfft),noverlap,nfft,Fs);
-[Ch2Pxx_filt,f]=pwelch(Ch2_filt,hanning(nfft),noverlap,nfft,Fs);
-[Ch3Pxx_filt,f]=pwelch(Ch3_filt,hanning(nfft),noverlap,nfft,Fs);
-%      [pxx,f]= pwelch(x,window,0,nfft,fs);    % W/Hz power spectral density
+  [Ch2Pxx,f]=pwelch(Ch2,hanning(nfft),noverlap,nfft,Fs);
+  [Ch3Pxx,f]=pwelch(Ch3,hanning(nfft),noverlap,nfft,Fs);
+  [Ch2Pxx_filt,f]=pwelch(Ch2_filt,hanning(nfft),noverlap,nfft,Fs);
+  [Ch3Pxx_filt,f]=pwelch(Ch3_filt,hanning(nfft),noverlap,nfft,Fs);
+  %      [pxx,f]= pwelch(x,window,0,nfft,fs);    % W/Hz power spectral density
 
-Ch2Pxxdb=10*log10(Ch2Pxx);
-Ch2Pxxdb_filt=10*log10(Ch2Pxx_filt);
-Ch3Pxxdb=10*log10(Ch3Pxx);
-Ch3Pxxdb_filt=10*log10(Ch3Pxx_filt);
+  Ch2Pxxdb=10*log10(Ch2Pxx);
+  Ch2Pxxdb_filt=10*log10(Ch2Pxx_filt);
+  Ch3Pxxdb=10*log10(Ch3Pxx);
+  Ch3Pxxdb_filt=10*log10(Ch3Pxx_filt);
 
-iFig=iFig+1;
-figure(iFig)
-plot(f/1000,Ch2Pxx_filt)
-xlabel('Freq (kHz)')
-ylabel('PSD (V^{2}/Hz)')
-xlim([0 flim])
-title('Kulite 60Hz High Pass Filtered')
+  iFig=iFig+1;
+  figure(iFig)
+  plot(f/1000,Ch2Pxx_filt)
+  xlabel('Freq (kHz)')
+  ylabel('PSD (V^{2}/Hz)')
+  xlim([0 flim])
+  title('Kulite 60Hz High Pass Filtered')
 
-iFig=iFig+1;
-figure(iFig)
-plot(f/1000,Ch2Pxxdb_filt)
-xlabel('Freq (kHz)')
-ylabel('dB (V^{2}/Hz)')
-xlim([0 flim])
-ylim([-120 0])
-title('Kulite 60Hz High Pass Filtered')
+  iFig=iFig+1;
+  figure(iFig)
+  plot(f/1000,Ch2Pxxdb_filt)
+  xlabel('Freq (kHz)')
+  ylabel('dB (V^{2}/Hz)')
+  xlim([0 flim])
+  ylim([-120 0])
+  title('Kulite 60Hz High Pass Filtered')
 
-iFig=iFig+1;
-figure(iFig)
-plot(f/1000,Ch3Pxx_filt)
-xlabel('Freq (kHz)')
-ylabel('PSD (V^{2}/Hz)')
-xlim([0 flim])
-title('PCB 60Hz High Pass Filtered')
+  iFig=iFig+1;
+  figure(iFig)
+  plot(f/1000,Ch3Pxx_filt)
+  xlabel('Freq (kHz)')
+  ylabel('PSD (V^{2}/Hz)')
+  xlim([0 flim])
+  title('PCB 60Hz High Pass Filtered')
 
-iFig=iFig+1;
-figure(iFig)
-plot(f/1000,Ch3Pxxdb_filt)
-xlabel('Freq (kHz)')
-ylabel('dB PSD (V^{2}/Hz)')
-xlim([0 flim])
-ylim([-120 0])
-title('PCB 60Hz High Pass Filtered')
-
+  iFig=iFig+1;
+  figure(iFig)
+  plot(f/1000,Ch3Pxxdb_filt)
+  xlabel('Freq (kHz)')
+  ylabel('dB PSD (V^{2}/Hz)')
+  xlim([0 flim])
+  ylim([-120 0])
+  title('PCB 60Hz High Pass Filtered')
 end

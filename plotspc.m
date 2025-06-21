@@ -127,9 +127,9 @@ channelPressure(:,4) =   PCB_SLOPE*channelData(:,4) + 0; % [psi]
 
 % Universal figure properties:
 tits = channelNames; % Titles for each subplot
-timeLabel = 'Time (ms)'; % X-axis label for time plots
+timeLabel = 'Time (ms)';      % X-axis label for time plots
 presLabel = 'Pressure (psi)'; % Y-axis label for pressure plots
-voltLabel = 'Voltage (V)'; % Y-axis label for voltage plots
+voltLabel = 'Voltage (V)';    % Y-axis label for voltage plots
 
 % Initialize figure counter
 iFig=0;

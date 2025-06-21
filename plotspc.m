@@ -83,7 +83,7 @@ nfft_flow=2^14;    % Number of points for flow spectra
 
 freqLimitKHz=12; % freq limit in kHz for spectra graphs
 
-clear pressure1 pressure2 voltage1 voltage2; % Clear calibration variables
+clear KULITE_SLOPE pressure1 pressure2 voltage1 voltage2; % Clear calibration variables
 
 %% Import Data File
 
@@ -97,8 +97,8 @@ channelNames = [Ch1, Ch2, Ch3, Ch4]; % Channel names
 clear Ch1 Ch2 Ch3 Ch4; % Clear individual channel name variables
 
 fprintf('\nLoading Data... Please Wait.')
-data=load(filename);
-t=data(:,1);
+data = load(filename);
+t = data(:,1);
 channelVoltage = data(:,2:end);
 fprintf('\nData loaded from file: %s',filename)
 

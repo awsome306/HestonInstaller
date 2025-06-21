@@ -9,9 +9,13 @@
 % * Edits by: Joseph Heston
 % * Date: 06/18/2025
 
+clc
+fprintf('\n--------------------------------------')
+fprintf('\nStarting Program plotspc.m')
+fprintf('\n--------------------------------------')
 %% Clear Workspace
 % Clear workspace and set default parameters
-clear; clc; close all;
+clear, close all;
 set(0,'DefaultAxesFontSize',18); set(0,'DefaultAxesLineWidth',1.75);
 set(0,'DefaultLineLineWidth',1.75);
 
@@ -33,6 +37,8 @@ SRSOutputGainDB = 10; % dB (SRS Output Gain)
 ch3GainDB = SRSInputGainDB+SRSOutputGainDB; % dB (PCB Filtered)
 
 channelGainDB   = [0, 0, ch3GainDB, 0]; % dB
+% Convert gains from dB
+channelGain = 10.^(channelGainDB/20); % linear gain
 clear SRSInputGainDB SRSOutputGainDB ch3GainDB; % Clear gain variables
 
 % Plot Spectra? (yes/no --> true/false)
@@ -77,26 +83,18 @@ nfft_flow=2^14;    % Number of points for flow spectra
 
 freqLimitKHz=12; % freq limit in kHz for spectra graphs
 
-
-% Convert gains from dB
-channelGain = 10.^(channelGainDB/20); % linear gain
-
 clear pressure1 pressure2 voltage1 voltage2; % Clear calibration variables
 
 %% Import Data File
 
 % If channel names are not known, use generic names.
 Ch1 = "Kulite DC coupled";
-Ch2 = "Kulite AC coupled";
+Ch2 = "---Nothing---";
 Ch3 = "PCB Filtered";
 Ch4 = "PCB Unfiltered";
 channelNames = [Ch1, Ch2, Ch3, Ch4]; % Channel names
 % channelNames = {'Ch1', 'Ch2', 'Ch3', 'Ch4'}; % Generic channel names
 clear Ch1 Ch2 Ch3 Ch4; % Clear individual channel name variables
-
-fprintf('\n--------------------------------------')
-fprintf('\nStarting Program plotspc.m')
-fprintf('\n--------------------------------------\n')
 
 fprintf('\nLoading Data... Please Wait.')
 data=load(filename);
@@ -127,23 +125,27 @@ channelPressure(:,4) =   PCB_SLOPE*channelData(:,4) + 0; % [psi]
 
 %% Plot Raw Data
 
+% Universal figure properties:
+tits = channelNames; % Titles for each subplot
+timeLabel = 'Time (ms)'; % X-axis label for time plots
+presLabel = 'Pressure (psi)'; % Y-axis label for pressure plots
+voltLabel = 'Voltage (V)'; % Y-axis label for voltage plots
+
 % Initialize figure counter
 iFig=0;
 
 % Plot time series data
 iFig=iFig+1;
-
 figure(iFig)
-tits = channelNames; % Titles for each subplot
 for i=1:numChannels
   subplot(numChannels,1,i);
   plot(t*1000, channelPressure(:,i)); % Convert time to milliseconds
-  ylabel('Pressure (psi)');
+  ylabel(presLabel);
   title(tits(i));
 end
 box on
 sgtitle(filename)
-xlabel('Time (ms)')
+xlabel(timeLabel)
 
 %% Get User Input (Replace with VITA)
 % Grab points using mouse cursor
@@ -193,28 +195,26 @@ fprintf('\nNoise Percentages')
 Ch11_noise=100*(Ch1_flow_rms-Ch1_noflow_rms)/Ch1_flow_mean
 Ch13_noise=100*(Ch3_flow_rms-Ch3_noflow_rms)/Ch1_flow_mean
 
-%% Plot
-
-tits = channelNames; % Titles for each subplot
+%% Plot Data Sub-series
 
 % No Flow Time series plot
 iFig=iFig+1;
 figure(iFig)
 for i=1:numChannels
   subplot(numChannels,1,i); plot(noFlowTimeSeries*1000, noFlowData(:,i)); % Convert time to milliseconds
-  xlim([0 2000]); ylabel('Pressure (psi)'); title(tits(i));
+  xlim([0 2000]); ylabel(presLabel); title(tits(i));
 end
 box on
-xlabel('Time (ms)')
+xlabel(timeLabel)
 sgtitle(filename)
 
 figure(iFig)
 for i=1:numChannels
   subplot(numChannels,1,i); plot(flowTimeSeries*1000, flowData(:,i)); % Convert time to milliseconds
-  xlim([0 2000]); ylabel('Pressure (psi)'); title(tits(i));
+  xlim([0 2000]); ylabel(presLabel); title(tits(i));
 end
 box on
-xlabel('Time (ms)')
+xlabel(timeLabel)
 sgtitle(filename)
 
 %% Frequency Domain Plots: 

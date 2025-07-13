@@ -8,9 +8,11 @@ apt update
 apt install git git-doc neofetch curl nano htop 
 apt install python3
 apt install cmake #If you plan on compiling anything
+apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 
 # TODO: Add batcat alias to bashrc
+# TODO: Add an alias for ncdu
 
 # TODO: Consider helix editer vs. neovim, etc. 
 # TODO: How to add tldr pages (better than man pages)

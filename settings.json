@@ -34,7 +34,14 @@
     "git.autofetch": true,
     "gitlens.graph.layout": "editor",
     "workbench.iconTheme": "material-icon-theme",
-
+    "material-icon-theme.files.associations": {
+        "*.m": "matlab"
+    },
+    "editor.fontFamily": "'Iosevka Nerd Font', Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "'IosevkaTerm Nerd Font' ,Consolas, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontLigatures": true,
     //-------- Code Spell Checker Configuration --------
     // The Language locale to use when spell checking. "en", "en-US" and "en-GB" are currently supported by default.
     "cSpell.language": "en",

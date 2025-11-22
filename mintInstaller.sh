@@ -6,11 +6,16 @@ apt update
 
 # Install the basics
 apt install git git-doc neofetch curl nano htop 
-apt install python3 
+apt install python3
 apt install cmake #If you plan on compiling anything
+apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 
 # TODO: Add batcat alias to bashrc
+# TODO: Add an alias for ncdu
+
+# TODO: Consider helix editer vs. neovim, etc. 
+# TODO: How to add tldr pages (better than man pages)
 
 # Add git config:
 git config --global user.name "Joey Heston"
@@ -53,7 +58,8 @@ pip install requests beautifulsoup4
 # Install Brave Browser 
 curl -fsS https://dl.brave.com/install.sh | sh
 
-# Install Signal 
+# Install Signal and Element
+# Add Signal to apt
 # NOTE: These instructions only work for 64-bit Debian-based Linux distributions such as Ubuntu, Mint etc.
 # 1. Install our official public software signing key:
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
@@ -62,7 +68,16 @@ cat signal-desktop-keyring.gpg | tee /usr/share/keyrings/signal-desktop-keyring.
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
     tee /etc/apt/sources.list.d/signal-xenial.list
 # 3. Update your package database and install Signal:
-apt update && apt install signal-desktop
+apt update
+
+# Add Element messenger to apt 
+apt install -y wget apt-transport-https
+wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | tee /etc/apt/sources.list.d/element-io.list
+apt update
+
+# Install Signal and Element
+apt install element-desktop signal-desktop
 
 
 # KVM
@@ -77,6 +92,34 @@ apt install resolvconf #Needed on Mint to resolve DNS
 
 apt install cifs-utils smbclient
 #mount -t cifs -o username=joeymint password=Bu2eL0dytE4xSn //192.168.2.1/bigsmb /mnt/bigsmb/
+
+# Install Docker and configure
+
+# #Uninstall conflicting
+# for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc
+# do 
+#      apt-get remove $pkg
+# done
+# # Add Docker's official GPG key:
+#  apt-get update
+#  apt-get install ca-certificates curl
+#  install -m 0755 -d /etc/apt/keyrings
+#  curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+#  chmod a+r /etc/apt/keyrings/docker.asc
+
+# # Add the repository to Apt sources:
+# echo \
+#   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+#   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+#    tee /etc/apt/sources.list.d/docker.list > /dev/null
+#  apt update
+# #Install
+# apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# # Configuration
+# groupadd docker
+# usermod -aG docker $USER
+# newgrp docker
+
 
 
 # Install Starship and NerdFonts
@@ -95,6 +138,10 @@ starship preset catppuccin-powerline -o ~/.config/starship.toml
 /bin/bash ./installFonts.sh
 
 #TODO: Set vscode font default:
+
+# KDE Connect for Phone SMS connection:
+# apt install kdeconnect
+# apt install kpeople-vcard
 
 # Install eza using Cargo, not apt
 #apt install eza

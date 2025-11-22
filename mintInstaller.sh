@@ -7,6 +7,7 @@ apt update
 # Install the basics
 apt install git git-doc neofetch curl nano htop 
 apt install python3
+apt install tldr # Better man pages
 apt install cmake #If you plan on compiling anything
 apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.

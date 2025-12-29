@@ -4,12 +4,21 @@
 #Update Package Manager
 apt update
 
+# Install the essentials
+apt install git git-doc curl nano htop
+apt install ndcu # Basically WizTree for linux.
+
+# Install common languages
+apt install python3 # Python
+#curl https://sh.rustup.rs -sSf | sh # Install Rust and Cargo
+apt install octave octave-doc octave-info octave-htmldoc
+apt install octave-dev octave-dbg
+apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
+
 # Install the basics
-apt install git git-doc neofetch curl nano htop 
-apt install python3
-apt install tldr # Better man pages
+apt install neofetch 
+#apt install tldr # Better man pages; This is broken???
 apt install cmake #If you plan on compiling anything
-apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 
 # TODO: Add batcat alias to bashrc

@@ -17,7 +17,7 @@ apt install octave-control octave-image octave-io octave-optim octave-signal oct
 
 # Install the basics
 apt install neofetch 
-#apt install tldr # Better man pages; This is broken???
+# pip install tldr # Better man pages; This is broken???
 apt install cmake #If you plan on compiling anything
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 

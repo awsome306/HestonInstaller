@@ -4,11 +4,21 @@
 #Update Package Manager
 apt update
 
+# Install the essentials
+apt install git git-doc curl nano htop
+apt install ndcu # Basically WizTree for linux.
+
+# Install common languages
+apt install python3 # Python
+#curl https://sh.rustup.rs -sSf | sh # Install Rust and Cargo
+apt install octave octave-doc octave-info octave-htmldoc
+apt install octave-dev octave-dbg
+apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
+
 # Install the basics
-apt install git git-doc neofetch curl nano htop 
-apt install python3
+apt install neofetch 
+# pip install tldr # Better man pages; This is broken???
 apt install cmake #If you plan on compiling anything
-apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.
 apt install bat # A better version of cat. 
 # TODO: Add batcat alias to bashrc
@@ -135,20 +145,7 @@ source ~/.bashrc
 starship preset catppuccin-powerline -o ~/.config/starship.toml
 
 # Install Nerdfonts
-for fontName in BigBlueTerminal DroidSansMono Ubuntu UbuntuMono CascadiaCode JetBrainsMono
-do
-    # -P arguement sets output directory
-    wget -P ~/.fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$fontName.zip
-    yes | unzip ~/.fonts/$fontName.zip  -d ~/.fonts/$fontName
-done
-
-# Removes ALL zip files in the fonts directory
-rm ~/.fonts/*.zip
-
-fc-cache -f -v
-
-# List installed Fonts:
-#fc-list|awk '{$1=""}1'|cut -d: -f1|sort|uniq
+/bin/bash ./installFonts.sh
 
 #TODO: Set vscode font default:
 

@@ -1,6 +1,7 @@
 {   "window.titleBarStyle": "custom",
     "MATLAB.telemetry": false,
     "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.suggest.enabled": true,
     "editor.rulers": [
         80,
         132

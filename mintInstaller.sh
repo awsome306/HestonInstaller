@@ -156,3 +156,8 @@ starship preset catppuccin-powerline -o ~/.config/starship.toml
 # Install eza using Cargo, not apt
 #apt install eza
 #TODO Update bashrc to include ls ==> eza alias
+
+#TODO: Install Rust and Cargo
+cargo install zoxide --locked
+#TODO: Install Rust tools like zoxide and uutils
+

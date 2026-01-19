@@ -11,9 +11,16 @@ apt install tldr # Better man pages
 apt install cmake #If you plan on compiling anything
 apt install ncdu # Basically WizTree for linux.
 apt install kdeconnect #To connect your phone sms messages, etc.
-apt install bat # A better version of cat. 
+apt install bat     # A better version of cat. 
+apt install ripgrep # A better version of grep
+# cargo install fd-find # fd, A better version of find
 # TODO: Add batcat alias to bashrc
 # TODO: Add an alias for ncdu
+
+# Install eza using Cargo, not apt
+#apt install eza
+#TODO Update bashrc to include ls ==> eza alias
+
 
 # TODO: Consider helix editer vs. neovim, etc. 
 # TODO: How to add tldr pages (better than man pages)
@@ -144,6 +151,8 @@ starship preset catppuccin-powerline -o ~/.config/starship.toml
 # apt install kdeconnect
 # apt install kpeople-vcard
 
-# Install eza using Cargo, not apt
-#apt install eza
-#TODO Update bashrc to include ls ==> eza alias
+# # OPTIONAL: RUST Replacements
+# apt install rust-coreutils
+# # To use it:
+# export PATH=/usr/lib/cargo/bin/coreutils:$PATH
+

@@ -11,7 +11,8 @@ alias wiztree='ncdu'
 alias rm='trash' # This is not recommended since the flags are different, but I rarely use flags with rm
 
 alias sysupdate='sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y; sudo apt autoclean -y'
-
+# List ports used by docker containers
+alias lsps='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a'
 
 alias clc='clear'
 alias matlab='matlab -desktop'

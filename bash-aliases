@@ -1,7 +1,0 @@
-
-# List ports used by docker containers
-alias lsps='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a'
-
-# Add MATLAB clear terminal commamnd
-alias clc='clear'
-

@@ -59,7 +59,7 @@ starship preset catppuccin-powerline -o ~/.config/starship.toml
 /bin/bash ./installFonts.sh
 
 
-# TODO: Consider helix editer vs. neovim, etc. 
+# TODO: Consider helix editor vs. neovim, etc. 
 
 
 # Add git config:

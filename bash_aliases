@@ -1,6 +1,10 @@
 
 #alias code=codium
-alias ll='ls -l'
+
+alias clc='clear'
+
+alias ls='eza --icons -F -H --group-directories-first --git -1'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -14,7 +18,6 @@ alias sysupdate='sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y; s
 # List ports used by docker containers
 alias lsps='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a'
 
-alias clc='clear'
 alias matlab='matlab -desktop'
 alias matlab-cli='command matlab -nodesktop'
 

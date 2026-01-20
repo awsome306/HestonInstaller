@@ -17,7 +17,7 @@ apt install octave-control octave-image octave-io octave-optim octave-signal oct
 # Install the basics
 apt install fastfetch # neofetch is no more...
 echo "alias neofetch='fastfetch'" >> .bash_aliases
-apt install cmake build-essentials #If you plan on compiling anything, including many rust/cargo pkgs
+apt install cmake build-essential #If you plan on compiling anything, including many rust/cargo pkgs
 # pip install tldr # Better man pages; This is broken???
 apt install kdeconnect #To connect your phone sms messages, etc.
 

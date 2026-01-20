@@ -1,38 +1,66 @@
 #!/usr/bin/bash
 
-
 #Update Package Manager
 apt update
 
 # Install the essentials
-apt install git git-doc curl nano htop
+apt install curl nano htop git git-doc 
 apt install ndcu # Basically WizTree for linux.
 
 # Install common languages
 apt install python3 # Python
-#curl https://sh.rustup.rs -sSf | sh # Install Rust and Cargo
+curl https://sh.rustup.rs -sSf | sh -s -- -yqV # Install Rust and Cargo, yes, quietly, output
 apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
 
 # Install the basics
 apt install neofetch 
+apt install cmake build-essentials #If you plan on compiling anything, including many rust/cargo pkgs
 # pip install tldr # Better man pages; This is broken???
-apt install cmake #If you plan on compiling anything
 apt install kdeconnect #To connect your phone sms messages, etc.
+
 apt install bat     # A better version of cat. 
 apt install ripgrep # A better version of grep
-# cargo install fd-find # fd, A better version of find
+
+cargo install tlrc --locked # tldr, a better version of the man pages
+cargo install fd-find # fd, A better version of find
+cargo install eza # Better version of ls
+cargo install zoxide --locked # Better version of cd
+# Add to bashrc
+echo '# Enable Zoxide' >> ~/.bashrc
+echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
+source ~/.bashrc
+
 # TODO: Add batcat alias to bashrc
 # TODO: Add an alias for ncdu
+# TODO: Add alias for eza / ls 
+# TODO Update bashrc to include ls ==> eza alias
 
-# Install eza using Cargo, not apt
-#apt install eza
-#TODO Update bashrc to include ls ==> eza alias
+# # OPTIONAL: RUST Replacements for core utils
+# apt install rust-coreutils
+# # To use it:
+# export PATH=/usr/lib/cargo/bin/coreutils:$PATH
+
+
+# Install Starship and NerdFonts
+
+# Install Starship
+curl -sS https://starship.rs/install.sh | sh
+# Add to bashrc
+echo '# Enable Starsihp' >> ~/.bashrc
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+source ~/.bashrc
+
+# TODO: create custom config starship.toml
+starship preset catppuccin-powerline -o ~/.config/starship.toml
+
+# Install Nerdfonts
+/bin/bash ./installFonts.sh
 
 
 # TODO: Consider helix editer vs. neovim, etc. 
-# TODO: How to add tldr pages (better than man pages)
+
 
 # Add git config:
 git config --global user.name "Joey Heston"
@@ -62,7 +90,7 @@ code --install-extension ms-python.pylance
 code --install-extension ms-python.isort
 
 
-# TODO: Populate user settings file with desired defaults
+# TODO: Populate user settings file with desired defaults, including fonts
 
 # echo
 # ~/.config/Code/User/settings.json
@@ -138,39 +166,7 @@ apt install cifs-utils smbclient
 # newgrp docker
 
 
-
-# Install Starship and NerdFonts
-
-# Install Starship
-curl -sS https://starship.rs/install.sh | sh
-# Add to bashrc
-echo '# Enable Starsihp' >> ~/.bashrc
-echo 'eval "$(starship init bash)"' >> ~/.bashrc
-source ~/.bashrc
-
-# TODO: create custom config starship.toml
-starship preset catppuccin-powerline -o ~/.config/starship.toml
-
-# Install Nerdfonts
-/bin/bash ./installFonts.sh
-
-#TODO: Set vscode font default:
-
 # KDE Connect for Phone SMS connection:
 # apt install kdeconnect
 # apt install kpeople-vcard
-
-# # OPTIONAL: RUST Replacements
-# apt install rust-coreutils
-# # To use it:
-# export PATH=/usr/lib/cargo/bin/coreutils:$PATH
-
-# Install eza using Cargo, not apt
-#apt install eza
-
-#TODO Update bashrc to include ls ==> eza alias
-
-#TODO: Install Rust and Cargo
-cargo install zoxide --locked
-#TODO: Install Rust tools like zoxide and uutils
 

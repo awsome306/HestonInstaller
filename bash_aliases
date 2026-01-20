@@ -27,3 +27,5 @@ alias bambu='flatpak run com.bambulab.BambuStudio'
 
 alias h='history | grep '
 alias mx='chmod a+x'
+
+alias neofetch='fastfetch'

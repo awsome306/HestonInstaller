@@ -5,7 +5,7 @@ apt update
 
 # Install the essentials
 apt install curl nano htop git git-doc 
-apt install ndcu # Basically WizTree for linux.
+apt install ncdu # Basically WizTree for linux.
 
 # Install common languages
 apt install python3 # Python

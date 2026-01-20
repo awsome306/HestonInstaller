@@ -44,10 +44,8 @@ source ~/.bashrc
 # export PATH=/usr/lib/cargo/bin/coreutils:$PATH
 
 
-# Install Starship and NerdFonts
-
 # Install Starship
-curl -sS https://starship.rs/install.sh | sh
+cargo install starship --locked --quiet
 # Add to bashrc
 echo '# Enable Starsihp' >> ~/.bashrc
 echo 'eval "$(starship init bash)"' >> ~/.bashrc

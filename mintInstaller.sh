@@ -25,10 +25,10 @@ apt install bat     # A better version of cat.
 echo "alias cat='batcat'" >> ~/.bash_aliases
 apt install ripgrep # A better version of grep
 
-cargo install tlrc --locked --quiet# tldr, a better version of the man pages
-cargo install fd-find --quiet# fd, A better version of find
-cargo install eza --quiet# Better version of ls
-cargo install zoxide --locked --quiet# Better version of cd
+cargo install tlrc --locked --quiet     # tldr, a better version of the man pages
+cargo install fd-find --quiet           # fd, A better version of find
+cargo install eza --quiet               # Better version of ls
+cargo install zoxide --locked --quiet   # Better version of cd
 # Add to bashrc
 echo '# Enable Zoxide' >> ~/.bashrc
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc

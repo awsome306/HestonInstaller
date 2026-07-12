@@ -9,7 +9,12 @@ apt install ncdu # Basically WizTree for linux.
 
 # Install common languages
 apt install python3 # Python
-curl https://sh.rustup.rs -sSf | sh -s -- -yqV # Install Rust and Cargo, yes, quietly, output
+# curl https://sh.rustup.rs -sSf | sh -s -- -yqV # Install Rust and Cargo, yes, quietly, output
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+cargo --version
+rustc --version
+
 apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics

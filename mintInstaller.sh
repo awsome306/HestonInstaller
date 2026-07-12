@@ -14,6 +14,8 @@ apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
 
+apt install default-jre # Java, for minecraft
+
 # Install the basics
 apt install fastfetch # neofetch is no more...
 echo "alias neofetch='fastfetch'" >> .bash_aliases

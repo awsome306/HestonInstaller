@@ -4,7 +4,7 @@
 apt update
 
 # Install the essentials
-apt install curl nano htop git git-doc 
+apt install curl wget nano htop git git-doc 
 apt install ncdu # Basically WizTree for linux.
 
 # Install common languages
@@ -14,7 +14,7 @@ apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
 
-apt install default-jre # Java, for minecraft
+# apt install default-jre # Java, for minecraft
 
 # Install the basics
 apt install fastfetch # neofetch is no more...

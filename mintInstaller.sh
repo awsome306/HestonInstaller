@@ -6,6 +6,7 @@ apt update
 # Install the essentials
 apt install curl wget nano htop git git-doc 
 apt install ncdu # Basically WizTree for linux.
+apt install build-essential # Required to compile Rust programs
 
 # Install common languages
 apt install python3 # Python

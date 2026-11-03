@@ -2,6 +2,8 @@
     "MATLAB.telemetry": false,
     "security.workspace.trust.untrustedFiles": "open",
     "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
     "editor.rulers": [
         80,
         132
@@ -11,6 +13,7 @@
             75
         ],
     },
+    "MATLAB.defaultEditor": false,
     "[FortranFixedForm]": {
         "editor.rulers": [
             5,
@@ -22,17 +25,24 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true
-      },     
+      },
+    "zenMode.centerLayout": false,     
     "workbench.colorTheme": "One Dark Pro Darker",
-    "material-icon-theme.files.associations": {
+    // "workbench.colorTheme": "One Dark Pro Mix",
+    "files.associations": {
         "*.m": "matlab"
     },
-    "python.defaultInterpreterPath": "C:\\Users\\Lagrange\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "workbench.editorAssociations": {
         "*.pdf": "latex-workshop-pdf-hook"
     },
     "git.autofetch": true,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
     "gitlens.graph.layout": "editor",
     "workbench.iconTheme": "material-icon-theme",
     "material-icon-theme.files.associations": {

@@ -6,17 +6,24 @@
 apt update
 
 # Install the essentials
-apt install curl nano htop git git-doc 
+apt install curl wget nano htop git git-doc 
 # git config credential.helper store # Enables storing passwords so you don't have to keep logging in
 apt install ncdu # Basically WizTree for linux.
+apt install build-essential # Required to compile Rust programs
 
 # Install common languages
 apt install python3 # Python
-# Installing Rust seems to be kinda weird. Like, it doesn't seem to want to work with sudo?
+# # Installing Rust seems to be kinda weird. Like, it doesn't seem to want to work with sudo?
 curl https://sh.rustup.rs -sSf | sh -s -- -yqV # Install Rust and Cargo, yes, quietly, output
+source "$HOME/.cargo/env"
+cargo --version
+rustc --version
+
 apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
+
+# apt install default-jre # Java, for minecraft
 
 # Install the basics
 apt install btop 

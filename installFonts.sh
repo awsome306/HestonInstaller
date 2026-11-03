@@ -1,6 +1,6 @@
-for fontName in BigBlueTerminal DroidSansMono Ubuntu UbuntuMono CascadiaCode JetBrainsMono InconsolataGo Gohu Iosevka IosevkaTerm
+for fontName in BigBlueTerminal DroidSansMono Ubuntu UbuntuMono CascadiaCode JetBrainsMono InconsolataGo Gohu Iosevka IosevkaTerm AtkinsonHyperlegibleMono
 do
-    wget -P ~/.fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$fontName.zip
+    wget -P ~/.fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/$fontName.zip
     yes | unzip ~/.fonts/$fontName.zip  -d ~/.fonts/$fontName
 done
 # Removes ALL zip files in the fonts directory

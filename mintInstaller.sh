@@ -1,29 +1,34 @@
 #!/usr/bin/bash
 
+# Needs -y in front of ALL the apt installs 
+
 #Update Package Manager
 apt update
 
 # Install the essentials
 apt install curl nano htop git git-doc 
+# git config credential.helper store # Enables storing passwords so you don't have to keep logging in
 apt install ncdu # Basically WizTree for linux.
 
 # Install common languages
 apt install python3 # Python
+# Installing Rust seems to be kinda weird. Like, it doesn't seem to want to work with sudo?
 curl https://sh.rustup.rs -sSf | sh -s -- -yqV # Install Rust and Cargo, yes, quietly, output
 apt install octave octave-doc octave-info octave-htmldoc
 apt install octave-dev octave-dbg
 apt install octave-control octave-image octave-io octave-optim octave-signal octave-statistics
 
 # Install the basics
-apt install fastfetch # neofetch is no more...
+apt install btop 
+apt install fastfetch   # neofetch is no more...
 echo "alias neofetch='fastfetch'" >> .bash_aliases
 apt install cmake build-essential #If you plan on compiling anything, including many rust/cargo pkgs
-# pip install tldr # Better man pages; This is broken???
-apt install kdeconnect #To connect your phone sms messages, etc.
-
-apt install bat     # A better version of cat. 
+apt install kdeconnect  #To connect your phone sms messages, etc.
+apt install bat         # A better version of cat. 
 echo "alias cat='batcat'" >> ~/.bash_aliases
-apt install ripgrep # A better version of grep
+apt install ripgrep     # A better version of grep
+apt install trash-cli   # Send to trash (instead of deleting)
+apt install gh          # GitHub CLI tool
 
 cargo install tlrc --locked --quiet     # tldr, a better version of the man pages
 cargo install fd-find --quiet           # fd, A better version of find
@@ -42,6 +47,20 @@ source ~/.bashrc
 # apt install rust-coreutils
 # # To use it:
 # export PATH=/usr/lib/cargo/bin/coreutils:$PATH
+
+# Install Common Desktop Apps (via Flathub)
+apt install flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+flatpak install flathub com.bambulab.BambuStudio
+echo "alias bambu='flatpak run com.bambulab.BambuStudio'" >> ~/.bash_aliases
+
+flatpak install flathub md.obsidian.Obsidian
+echo "alias obsidian='flatpak run md.obsidian.Obsidian'" >> ~/.bash_aliases
+
+flatpak install flathub one.ablaze.floorp
+flatpak install com.tomjwatson.Emote
+
 
 
 # Install Starship
@@ -77,16 +96,10 @@ apt install apt-transport-https
 apt update 
 apt install code
 
-# Extensions
-code --install-extension zhuangtongfa.Material-theme
-code --install-extension PKief.material-icon-theme
-code --install-extension ms-python.python 
-code --install-extension GitHub.copilot
-code --install-extension MathWorks.language-matlab 
-code --install-extension ms-vscode-remote.remote-ssh
-code --install-extension ms-python.autopep8
-code --install-extension ms-python.pylance
-code --install-extension ms-python.isort
+# VSCode Extensions
+/bin/bash ./codeUpgrade.sh
+# VSCode Settings
+/bin/bash 
 
 
 # TODO: Populate user settings file with desired defaults, including fonts
